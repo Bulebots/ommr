@@ -69,9 +69,3 @@ def convert(image_path, maze_size, output_path):
     labels = image_to_labels(image, maze_size=maze_size)
     text = labels_to_text(labels, maze_size=maze_size)
     output_path.write_text(text)
-
-
-if __name__ == '__main__':
-    convert(image_path=Path('tests/files/japan2014ef.png'),
-            maze_size=32,
-            output_path=Path('test.txt'))
