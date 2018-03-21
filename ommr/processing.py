@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from imageio import imread
 from scipy.cluster.vq import ClusterError
 from scipy.cluster.vq import kmeans2
