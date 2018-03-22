@@ -8,6 +8,22 @@ This project aims to ease the process of creating maze files simply using
 images of micromouse mazes.
 
 
+Usage
+-----
+
+Install it with::
+
+   pip install ommr
+
+Run it with::
+
+   ommr input_image.png
+
+The generated output file complies with the standard micromouse maze text
+format.  For more information visit `micromouseonline/mazefiles
+<https://github.com/micromouseonline/mazefiles>`_.
+
+
 Image requirements
 ------------------
 
@@ -31,22 +47,6 @@ screenshot of the area with some care should be enough.
 If you use GNU/Linux you might be able to take area screenshots by simply
 pressing ``MAYUS + PRINT`` and then selecting the area on your screen.
 Screenshots should appear on your home "Pictures" folder.
-
-
-Usage
------
-
-Install it with::
-
-   pip install ommr
-
-Run it with::
-
-   ommr input_image.png
-
-The generated output file complies with the standard micromouse maze text
-format.  For more information visit `micromouseonline/mazefiles
-<https://github.com/micromouseonline/mazefiles>`_.
 
 
 Command line options
