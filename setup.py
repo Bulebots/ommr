@@ -33,6 +33,7 @@ setup(
     install_requires=[
         'click',
         'imageio',
+        'numpy',
         'scipy',
     ],
     extras_require={
