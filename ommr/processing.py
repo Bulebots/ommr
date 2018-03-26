@@ -17,20 +17,14 @@ def image_to_labels(image, maze_size):
     cell_quarter = round(cell_size / 4)
     walls = []
     for row in range(maze_size):
-        north_walls = []
-        west_walls = []
         for column in range(maze_size):
             snapshot = take_cell_snapshot(image, row, column, maze_size)
             north = snapshot[:cell_quarter, cell_quarter:-cell_quarter]
             west = snapshot[cell_quarter:-cell_quarter, :cell_quarter]
-            north_walls.append(north.mean())
-            west_walls.append(west.mean())
-        # TODO: use (NORTH, WEST) tuple instead
-        walls.extend(north_walls)
-        walls.extend(west_walls)
+            walls.extend([north.mean(), west.mean()])
 
     data = whiten(walls)
-    for i in range(100):
+    for _ in range(100):
         try:
             codebook, labels = kmeans2(data=data, k=2, missing='raise')
             break
@@ -42,23 +36,22 @@ def image_to_labels(image, maze_size):
 
 
 def labels_to_text(labels, maze_size):
-    match = labels[0]
+    wall = labels[0]
     output = ''
     for i in range(maze_size):
         for j in range(maze_size):
-            if labels[2 * i * maze_size + j] == match:
+            if labels[::2][i * maze_size + j] == wall:
                 output += 'o---'
             else:
                 output += 'o   '
         output += 'o\n'
-        for j in range(maze_size, 2 * maze_size):
-            if labels[2 * i * maze_size + j] == match:
+        for j in range(maze_size):
+            if labels[1::2][i * maze_size + j] == wall:
                 output += '|   '
             else:
                 output += '    '
         output += '|\n'
-    output += 'o---' * maze_size
-    output += 'o\n'
+    output += 'o---' * maze_size + 'o\n'
     return output
 
 
